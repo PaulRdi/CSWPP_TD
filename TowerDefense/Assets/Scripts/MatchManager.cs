@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,30 +14,75 @@ public class MatchManager : MonoBehaviour
     [SerializeField] Transform pathParent;
     List<Transform> path;
     [SerializeField] GameSettings settings;
+    //Eine Liste aus einer Klasse, die als [System.Serializable] markiert ist, lässt sich über den Inspektor bearbeiten!
+    [SerializeField] List<KeycodeToTower> keysToTower;
+
 
     int currentWaveIndex = 0;
     Wave currentWave;
     int currentCreepInWave;
-
+    bool gameRunning;
+    TowerController selectedTower;
+    BuildingController buildingController;
     void Init()
     {
         path = new List<Transform>();
-
+        buildingController = FindObjectOfType<BuildingController>();
         //Iteriert über jedes Child des Transforms pathParent
-        foreach(Transform t in pathParent)
+        foreach (Transform t in pathParent)
         {
             path.Add(t);
         }
         currentWaveIndex = 0;
+        gameRunning = true;
         StartCoroutine(MatchCoroutine());
     }
 
-    
     private void Awake()
     {
         //Vorerst führen wir Init einfach in Awake aus. Später ist es aber denkbar Init() von unterschiedlichen
         //Orten auszuführen!
         Init();
+    }
+
+    private void Update()
+    {
+        if (gameRunning)
+        {
+            HandleIngameInput();
+            HandleBuilding();
+        }
+    }
+
+    private void HandleBuilding()
+    {
+        if (selectedTower == null) return;
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            Vector3 point;
+            if (buildingController.CanBuild(selectedTower, out point))
+            {
+                buildingController.Build(selectedTower, point);
+            }
+        }
+    }
+
+    private void HandleIngameInput()
+    {
+        foreach(KeycodeToTower ktc in keysToTower)
+        {
+            if (Input.GetKeyDown(ktc.keyCode))
+            {
+                SetSelectedBuilding(ktc.tower);
+            }
+        }
+    }
+
+    //Hier ist eine eigene Methode oder eine Property sinnvoll, weil davon auszugehen ist, dass hier noch mehr passieren wird, als nur den Tower zu setzen.
+    private void SetSelectedBuilding(TowerController tower)
+    {
+        selectedTower = tower;
     }
 
     IEnumerator MatchCoroutine()
@@ -47,6 +93,7 @@ public class MatchManager : MonoBehaviour
             currentWave = settings.waves[currentWaveIndex];
             yield return StartCoroutine(WaveRoutine());
         }
+        gameRunning = false;
     }
 
     IEnumerator WaveRoutine()

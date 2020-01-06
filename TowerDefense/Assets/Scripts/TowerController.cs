@@ -15,6 +15,8 @@ public class TowerController : MonoBehaviour
     [SerializeField] float _shotInterval;
     [SerializeField] Transform _muzzle;
     [SerializeField] Bullet _bullet;
+    public BoxCollider boundingBox => _boundingBox;
+    [SerializeField] BoxCollider _boundingBox;
 
     //interner timer, der die schuss frequenz stoppt.
     float t;
