@@ -32,7 +32,8 @@ public class Creep : MonoBehaviour
 
     IEnumerator MoveTowardsPoint(Transform target)
     {
-        Vector3 dir = target.position - transform.position;
+        Vector3 dir = (target.position - transform.position).normalized;
+        //Achtung! Wenn minDistToGoal zu klein ist oder speed zu groß ist, kann es sein, dass der Creep sein Ziel nie erreicht.
         while (Vector3.Distance(target.position, transform.position) > minDistToGoal)
         {
             transform.Translate(dir * Time.deltaTime * speed);
