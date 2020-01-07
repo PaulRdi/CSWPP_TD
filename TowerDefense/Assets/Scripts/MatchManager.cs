@@ -97,6 +97,7 @@ public class MatchManager : MonoBehaviour
             currentWave = settings.waves[currentWaveIndex];
             yield return StartCoroutine(WaveRoutine());
         }
+
     }
 
     IEnumerator WaveRoutine()
