@@ -60,7 +60,7 @@ Material:
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _FadeDist: 0.27
+    - _FadeDist: 0.1
     - _FadeThresh: 0.27
     - _GlossMapScale: 1
     - _Glossiness: 0
@@ -77,4 +77,4 @@ Material:
     m_Colors:
     - _Color: {r: 0.729412, g: 0.54902, b: 0.364706, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
-    - _FadeColor: {r: 0.9176471, g: 0.7803922, b: 1, a: 1}
+    - _FadeColor: {r: 0.7591125, g: 0.4743, b: 0.93, a: 1}
