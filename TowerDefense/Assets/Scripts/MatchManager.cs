@@ -22,12 +22,16 @@ public class MatchManager : MonoBehaviour
     Wave currentWave;
     int currentCreepInWave;
     bool gameRunning;
-    TowerController selectedTower;
-    BuildingController buildingController;
+    //Input könnte über einen eigenen Controller gehandlet werden, aber da dies ein kleiner Prototyp ist, machen wir das
+    //direkt im MatchManager.
+    TowerController selectedTowerForBuilding;
+    //ConstructionController hält Funktionen und Daten, die für das Bauen von Gebäuden benötigt werden.
+    //Aktuell ist das eine Möglichkeit zu überprüfen, ob ein Bauort frei ist.
+    ConstructionController buildingController;
     void Init()
     {
         path = new List<Transform>();
-        buildingController = FindObjectOfType<BuildingController>();
+        buildingController = FindObjectOfType<ConstructionController>();
         //Iteriert über jedes Child des Transforms pathParent
         foreach (Transform t in pathParent)
         {
@@ -56,14 +60,14 @@ public class MatchManager : MonoBehaviour
 
     private void HandleBuilding()
     {
-        if (selectedTower == null) return;
+        if (selectedTowerForBuilding == null) return;
 
         if (Input.GetMouseButtonDown(0))
         {
             Vector3 point;
-            if (buildingController.CanBuild(selectedTower, out point))
+            if (buildingController.CanBuild(selectedTowerForBuilding, out point))
             {
-                buildingController.Build(selectedTower, point);
+                buildingController.Build(selectedTowerForBuilding, point);
             }
         }
     }
@@ -72,7 +76,7 @@ public class MatchManager : MonoBehaviour
     {
         foreach(KeycodeToTower ktc in keysToTower)
         {
-            if (Input.GetKeyDown(ktc.keyCode))
+            if (Input.GetKey(ktc.keyCode))
             {
                 SetSelectedBuilding(ktc.tower);
             }
@@ -82,7 +86,7 @@ public class MatchManager : MonoBehaviour
     //Hier ist eine eigene Methode oder eine Property sinnvoll, weil davon auszugehen ist, dass hier noch mehr passieren wird, als nur den Tower zu setzen.
     private void SetSelectedBuilding(TowerController tower)
     {
-        selectedTower = tower;
+        selectedTowerForBuilding = tower;
     }
 
     IEnumerator MatchCoroutine()
@@ -93,7 +97,6 @@ public class MatchManager : MonoBehaviour
             currentWave = settings.waves[currentWaveIndex];
             yield return StartCoroutine(WaveRoutine());
         }
-        gameRunning = false;
     }
 
     IEnumerator WaveRoutine()

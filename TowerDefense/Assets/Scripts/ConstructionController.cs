@@ -3,22 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class BuildingController : MonoBehaviour
+public class ConstructionController : MonoBehaviour
 {
-    List<TowerController> builtTowers;
     Camera camera;
     [SerializeField] LayerMask buildableLayer;
+    [SerializeField] LayerMask boundingBoxLayer;
 
+    Bounds currBounds;
     private void Awake()
     {
-        builtTowers = new List<TowerController>();
         camera = FindObjectOfType<Camera>();
     }
     public TowerController Build(TowerController tower, Vector3 point)
     {
-        TowerController inst = Instantiate(tower);
+        TowerController inst = Instantiate(tower.gameObject).GetComponent<TowerController>();
         inst.transform.position = point;
-        builtTowers.Add(tower);
         return inst;
     }
     
@@ -29,17 +28,15 @@ public class BuildingController : MonoBehaviour
         if (Physics.Raycast(ray, out RaycastHit hit, 100.0f, buildableLayer))
         {
             point = hit.point;
-            Bounds boundsToTest = tower.boundingBox.bounds;
-            //Bounds sollen auf der ebene stehen! Deswegen die addition!
-            boundsToTest.center = hit.point + new Vector3(0f, boundsToTest.extents.y / 2.0f, 0f);
-            if (builtTowers.Any(tc => tc.boundingBox.bounds.Intersects(boundsToTest)))
+            //Bounds sollen auf der Ebene stehen! Deswegen die addition!
+            Vector3 center = hit.point + new Vector3(0f, tower.boundingBox.size.y, 0f);
+            Collider[] res = new Collider[1];
+            if (Physics.OverlapBoxNonAlloc(center, tower.boundingBox.size, res, Quaternion.identity, boundingBoxLayer) > 0)
             {
                 return false;
             }
-
             return true;
         }
-
         return false;
         
     }

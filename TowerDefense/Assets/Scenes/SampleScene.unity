@@ -6851,6 +6851,9 @@ MonoBehaviour:
   buildableLayer:
     serializedVersion: 2
     m_Bits: 256
+  boundingBoxLayer:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!4 &1561471626
 Transform:
   m_ObjectHideFlags: 0
