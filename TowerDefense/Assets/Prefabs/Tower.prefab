@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 314b757d207c71b49b810bf637f83a29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shotInterval: 0.5
+  _shotInterval: 1.5
   _muzzle: {fileID: 7087108605658484518}
   _bullet: {fileID: 7198722717987563548, guid: 63b0f4c519a7f8f43bae496b659442f6, type: 3}
   _boundingBox: {fileID: 3112330979292770005}
@@ -165,11 +165,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8769142131941633035}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: 23b2a75e65abcdb4aa621bc744966ded,
-        type: 3}
-      propertyPath: m_Name
-      value: towerDefense_023
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 23b2a75e65abcdb4aa621bc744966ded,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -225,6 +220,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 23b2a75e65abcdb4aa621bc744966ded,
+        type: 3}
+      propertyPath: m_Name
+      value: towerDefense_023
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 23b2a75e65abcdb4aa621bc744966ded, type: 3}
 --- !u!4 &4380019468537194333 stripped
@@ -240,11 +240,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8769142131941633035}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: 001606437da46194abf3f97ab0498a7e,
-        type: 3}
-      propertyPath: m_Name
-      value: towerDefense_070
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 001606437da46194abf3f97ab0498a7e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -300,6 +295,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 001606437da46194abf3f97ab0498a7e,
+        type: 3}
+      propertyPath: m_Name
+      value: towerDefense_070
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 001606437da46194abf3f97ab0498a7e, type: 3}
 --- !u!4 &4380019469184307012 stripped
@@ -315,11 +315,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8769142131941633035}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: bb0d8b13609ebf3499f4874325db2e1b,
-        type: 3}
-      propertyPath: m_Name
-      value: towerDefense_022
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: bb0d8b13609ebf3499f4874325db2e1b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -374,6 +369,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: bb0d8b13609ebf3499f4874325db2e1b,
+        type: 3}
+      propertyPath: m_Name
+      value: towerDefense_022
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bb0d8b13609ebf3499f4874325db2e1b, type: 3}
