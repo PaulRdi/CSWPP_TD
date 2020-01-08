@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b053eb79bd6244e45bc68e7396dc39c8, type: 3}
-  m_Name: game_settings
+  m_Script: {fileID: 11500000, guid: 83f8cdc2fa18e5646b58b6b10c2e41d0, type: 3}
+  m_Name: Second
   m_EditorClassIdentifier: 
-  _maxLives: 10
-  waves:
-  - {fileID: 11400000, guid: af29ff888d514a84fa1d9ce7ad54acbb, type: 2}
-  - {fileID: 11400000, guid: 9d0d5f511e6dc9b49b78bee926c1599f, type: 2}
+  _creepPrefab: {fileID: 2862226042775283928, guid: 159edb7e0811c7a4a83454b3f7496639,
+    type: 3}
+  _numberOfSpawns: 10
+  _spawnInterval: 0.8

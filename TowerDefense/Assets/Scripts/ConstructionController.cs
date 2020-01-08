@@ -29,7 +29,7 @@ public class ConstructionController : MonoBehaviour
         {
             point = hit.point;
             //Bounds sollen auf der Ebene stehen! Deswegen die addition!
-            Vector3 center = hit.point + new Vector3(0f, tower.boundingBox.size.y, 0f);
+            Vector3 center = hit.point + tower.boundingBox.center;
             Collider[] res = new Collider[1];
             if (Physics.OverlapBoxNonAlloc(center, tower.boundingBox.size, res, Quaternion.identity, boundingBoxLayer) > 0)
             {
